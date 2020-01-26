@@ -1,0 +1,175 @@
+import java.util.Scanner;
+public class Brosis {
+	String name;
+	int age;
+	int brother;
+	int fB;
+	int hB;
+	int sB;
+	int bIL;
+	int sister;
+	int fS;
+	int hS;
+	int sS;
+	int sIL;
+	public static void main(String[] args) 
+	{
+		String brotherC="";
+		String sibling="";
+		String sisterC="";
+		Scanner keyboard = new Scanner (System.in);
+		Brosis k = new Brosis();
+		System.out.println("What is your name? (First name only)");
+		String nameUser=keyboard.next();
+		k.setName(nameUser);
+		System.out.println("What is your age?");
+		int ageUser=keyboard.nextInt();
+		k.setAge(ageUser);
+		System.out.println("Do you have any siblings? (y or n)");
+		sibling = keyboard.next();
+		if(sibling.contentEquals("n"))
+		{
+			System.out.println(k.onlyChild());
+			System.exit(0);
+		}
+		else
+		{
+			System.out.println("Do you have any brothers, including step brothers and brothers in law? (y or n)");
+			brotherC = keyboard.next();
+			if(brotherC.contentEquals("y"))
+			{
+				System.out.println("How many brothers do you have?");
+				k.brother = keyboard.nextInt();
+				if(k.brother==0)
+				{
+					System.out.println("This doesn't add up. Please try again.");
+					System.exit(0);
+				}
+				System.out.println("How many of your brothers from the same mother and father?");
+				k.fB=keyboard.nextInt();
+				if(k.brother!=k.fB)
+				{
+					System.out.println("How many of your brothers are half brothers?");
+					k.hB=keyboard.nextInt();
+					if(k.brother!=k.fB+k.hB)
+					{
+						System.out.println("How many of your brothers are step brothers?");
+						k.sB=keyboard.nextInt();
+						if(k.brother!=k.fB+k.hB+k.sB)
+						{
+							System.out.println("How many of your brothers are brothers in law?");
+							k.bIL=keyboard.nextInt();
+						}
+					}
+				}
+				
+				if(k.brother!=k.fB+k.hB+k.sB+k.bIL)
+				{
+					System.out.println("The math doesn't add up. Please try again.");
+					System.exit(0);
+				}
+			}
+			}
+			System.out.println("Do you have any sisters, including step sisters and sisters in law? (y or n)");
+			sisterC = keyboard.next();
+			if(sisterC.contentEquals("y"))
+			{
+				System.out.println("How many sisters do you have?");
+				k.sister = keyboard.nextInt();
+				if(k.sister==0)
+				{
+					System.out.println("This doesn't add up. Please try again.");
+					System.exit(0);
+				}
+				System.out.println("How many of your sisters from the same mother and father?");
+				k.fS=keyboard.nextInt();
+				if(k.sister!=k.fS)
+				{
+					System.out.println("How many of your sisters are half sisters?");
+					k.hS=keyboard.nextInt();
+					if(k.sister!=k.fS+k.hS)
+					{
+						System.out.println("How many of your brothers are step brothers?");
+						k.sB=keyboard.nextInt();
+						if(k.sister!=k.fS+k.hS+k.sS)
+						{
+							System.out.println("How many of your sisters are sisters in law?");
+							k.sIL=keyboard.nextInt();
+						}
+					}
+						if(k.sister!=k.fS+k.hS+k.sS+k.sIL)
+						{
+							System.out.println("The math doesn't add up. Please try again.");
+							System.exit(0);
+						}
+				}
+			}
+			if(brotherC.contentEquals("n")&&sisterC.contentEquals("n"))
+			{
+				System.out.println("This doesn't make sense. Please try again.");
+				System.exit(0);
+			}
+			if(k.brother==0&&k.sister>0)
+			{
+				System.out.println(k.sister());
+			}
+			if(k.brother!=0&&k.sister==0)
+			{
+				System.out.println(k.brother());
+			}
+			if(k.brother>0&&k.sister>0)
+			{
+				System.out.println(k);
+			}
+			keyboard.close();
+			}
+		public Brosis()
+	{
+		name="No name yet";
+		age=0;
+		brother=0;
+		fB=0;
+		hB=0;
+		sB=0;
+		bIL=0;
+		sister=0;
+		fS=0;
+		hS=0;
+		sS=0;
+		sIL=0;
+	}
+	public void setName(String newName)
+	{
+		name=newName;
+	}
+	public void setAge(int newAge)
+	{
+		age=newAge;
+	}
+	public String getName()
+	{
+		return name;
+	}
+	public int getAge()
+	{
+		return age;
+	}
+	public String toString()
+	{
+		return name + " (Age " + age + ") has " + brother + " brother(s), with " + fB + " being brother(s) from the same parents, " + hB + " being half brother(s), " + sB + " being step brother(s) and " + bIL + " being brother(s) in law as well as has " + sister + " sister(s) with " + fS + " being full sister(s), " + hS + " being half sister(s), " + sS + " being step sister(s) and " + sIL + " being sister(s) in law";
+	}
+	public String sister()
+	{
+		return name + " (Age " + age + ") has " + sister + " sister(s), with " + fS + " being sister(s) from the same parents, " + hS + " being half sister(s), " + sS + " being step sister(s) and " + sIL + "being sister(s) in law.";
+	}
+	public String brother()
+	{
+		return name + " (Age " + age + ") has " + brother + " brother(s), with " + fB + " being brother(s) from the same parents, " + hB + " being half brother(s), " + sB + " being step brother(s) and " + bIL + " being brother(s) in law.";
+	}
+	public String onlyChild()
+	{
+		return name + " (Age " + age + ") is an only child.";
+	}
+	
+
+}
